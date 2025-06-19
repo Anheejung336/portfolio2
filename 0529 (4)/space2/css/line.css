@@ -1,0 +1,66 @@
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ABA8FF;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    .box {
+      width: 253px;
+      height: 253px;
+      background: #ABA8FF;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .water {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      transform: translateY(100%);
+      z-index: 1;
+      transition: transform 0.3s;
+    }
+
+    .water_wave {
+      width: 200%;
+      position: absolute;
+      bottom: 100%;
+    }
+
+    .water_wave_back {
+      right: 0;
+      fill: #FFFFFF;
+      animation: wave-back 1.4s infinite linear;
+      opacity: .5;
+    }
+
+    .water_wave_front {
+      left: 0;
+      fill: #FFFFFF;
+      animation: wave-front 0.7s infinite linear;
+    }
+
+    @keyframes wave-front {
+      100% {
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes wave-back {
+      100% {
+        transform: translate(50%, 0);
+      }
+    }

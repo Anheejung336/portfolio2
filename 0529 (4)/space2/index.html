@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="점에서 시작해 입체로 성장하는 인터랙티브 UX/UI 디자이너 안희정의 포트폴리오입니다.">
+  <meta name="keywords" content="UX디자인, UI디자인, 포트폴리오, 안희정, 인터랙션, 점선면입체">
+  <meta name="author" content="an heejung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>an heejung | Portfolio</title>
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/e9623bd7b2.js" crossorigin="anonymous"></script>
+  <!-- 제이쿼리 코드 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <!-- 내꺼 제이쿼리 -->
+  <script src="js/line.js" defer></script>
+  <!-- 파비콘 -->
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <!-- swiper css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- swiper js -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- jQuery 및 AOS 라이브러리 추가 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- gsap -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+  <!-- 내꺼 css -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/line.css">
+</head>
+
+<body>
+  <!-- SVG 정의 -->
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="wave">
+      <path
+        d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7v20H420z">
+      </path>
+      <path
+        d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0v20H420z">
+      </path>
+      <path
+        d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7v20H140z">
+      </path>
+      <path
+        d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0v20H140z">
+      </path>
+    </symbol>
+  </svg>
+
+  <!-- 박스 -->
+  <div class="box">
+    <div class="water" id="water">
+      <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
+        <use xlink:href="#wave"></use>
+      </svg>
+      <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
+        <use xlink:href="#wave"></use>
+      </svg>
+    </div>
+  </div>
+
+
+
+ 
+
+  <script>
+    gsap.registerPlugin(MotionPathPlugin);
+
+    const drawTimeline = gsap.timeline({ delay: 5.3 });
+
+    const shapes = [
+      { id: "#shape1", path: "path", reverse: false },
+      { id: "#shape2", path: "path", reverse: false },
+      { id: "#shape3", path: "path", reverse: false },
+      { id: "#shape4", path: "path", reverse: false }
+    ];
+
+
+    shapes.forEach(({ id, path, reverse }) => {
+      const pathEl = document.querySelector(`${id} ${path}`);
+      const svgEl = pathEl.closest("svg");
+
+      svgEl.style.overflow = "visible";
+
+      const pathLength = pathEl.getTotalLength();
+      gsap.set(pathEl, {
+        strokeDasharray: pathLength,
+        strokeDashoffset: pathLength
+      });
+
+      const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      dot.setAttribute("r", 5);
+      dot.setAttribute("fill", "white");
+      dot.setAttribute("class", "draw_dot");
+      dot.setAttribute("opacity", "0");
+      pathEl.parentNode.appendChild(dot);
+
+      // 선 그리기
+      drawTimeline.to(pathEl, {
+        strokeDashoffset: 0,
+        duration: 2,
+        ease: "power2.inOut"
+      }, 0);
+
+      // 점 이동 (방향 조건 분기)
+      drawTimeline.to(dot, {
+        opacity: 1,
+        duration: 0.2
+      }, 0);
+
+      drawTimeline.to(dot, {
+        motionPath: {
+          path: pathEl,
+          align: pathEl,
+          autoRotate: false,
+          alignOrigin: [0.5, 0.5],
+          start: reverse ? 1 : 0,
+          end: reverse ? 0 : 1
+        },
+        duration: 2,
+        ease: "power2.inOut"
+      }, 0);
+
+      drawTimeline.to(dot, {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power2.out"
+      }, ">0.1");
+    });
+
+  </script>
+
+</body>
+
+
+
+</html>

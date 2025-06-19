@@ -73,18 +73,16 @@ body {
 
 /* 1번: 동그라미 버튼 */
 
-.side_gnb ul li:nth-child(1) a {
-    transition: 0.3s;
+.side_gnb ul li:nth-child(1) {
+    position: relative;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background: var(--w-color);
-    position: absolute;
-    left: 20px;
-    top: -33px;
+    transition: 0.3s;
 }
 
-.side_gnb ul li:nth-child(1) a:hover {
+.side_gnb ul li:nth-child(1):hover {
     transform: scale(1.4);
 }
 
@@ -112,6 +110,15 @@ body {
 
 .side_gnb ul li:nth-child(3) a:hover {
     background: var(--w-color);
+}
+
+.section_3d img {
+    transition: transform 0.8s ease;
+    transform-origin: center center;
+}
+
+.section_3d:hover img {
+    transform: rotate(360deg);
 }
 
 /* 스크롤힌트 */

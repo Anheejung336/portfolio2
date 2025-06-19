@@ -78,7 +78,7 @@ $(function () {
     let isAnimating = false;
 
     // ✅ 2. 타임라인 정의
-    const tl2 = gsap.timeline({
+    tl2 = gsap.timeline({
         paused: true,
         onStart: () => {
             isAnimating = true;
@@ -395,30 +395,21 @@ $(function () {
                 ease: "power2.in"
             }, "jump4+=0.5");
 
+            $('.side_gnb li:nth-child(1) a').on('click', function (e) {
+                e.preventDefault(); // 기본 앵커 이동 방지
 
-
-            // ✅ 5. ScrollTrigger로 모션 트리거
-            ScrollTrigger.create({
-                trigger: ".section_dot", // 🔁 너의 첫 번째 섹션 ID
-                start: "top top",
-                pin: true,
-                scrub: false,
-                onEnter: () => {
-                    if (!isAnimating) tl2.play();
-                },
-                onEnterBack: () => {
-                    if (!isAnimating) tl2.restart();
-                }
+$('a[href="#dot"]').on("click", function (e) {
+  e.preventDefault();
+  gsap.to(window, {
+    scrollTo: "#dot",
+    duration: 1,
+    onComplete: () => {
+      tl2.pause(0).invalidate().restart(); // .section.dot
+    }
+  });
+});
             });
 
-            // ✅ 6. 휠/터치 이동 차단 (모션 중일 때만)
-            window.addEventListener("wheel", e => {
-                if (isAnimating) e.preventDefault();
-            }, { passive: false });
-
-            window.addEventListener("touchmove", e => {
-                if (isAnimating) e.preventDefault();
-            }, { passive: false });
 
 
         });
