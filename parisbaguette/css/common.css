@@ -1,0 +1,310 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* font-family: "Playfair Display", serif; */
+/* font-family: "Noto Sans KR", sans-serif; */
+
+@font-face {
+    font-family: 'lust-text';
+    src: url(../font/AnyConv.com__Lust-Text-Medium.eot);
+    src: url(../font/Lust-Text-Medium.woff) format('woff'),
+        url(../font/Lust-Text-Medium.otf) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color1: #0B42A1;
+    --sub-brown: #895425;
+    --main-tit: #023586;
+    --w-color: #fff;
+    --playfair-display: "Playfair Display", serif;
+    --Noto-Sans: "Noto Sans KR", sans-serif;
+    --lust-text: "lust-text", serif;
+}
+
+body {
+    font-family: var(--noto-sans);
+}
+
+/* 인트로 화면 스타일 */
+.intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 960px;
+    background-color: #fff;
+    /* background-color: var(--main-color1); */
+    /* 원하는 배경 색상 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 2s ease-out;
+    z-index: 10;
+}
+
+.intro.hidden {
+    opacity: 0;
+    pointer-events: none;  /* 요소가 투명해질 때 클릭/호버 허용 */
+}
+.intro-content{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+  @keyframes draw {
+    100% {
+      stroke-dashoffset: 0; /* 애니메이션 끝날 때 선이 완전히 그려짐 */
+    }
+  }
+
+svg#bg1{
+    fill: none;
+    stroke: var(--main-color1);
+    /* stroke: var(--w-color); */
+    stroke-width: 3px;
+    stroke-dasharray: 5000; /* 경로 길이에 맞는 대시의 크기 */
+    stroke-dashoffset: 5000; /* 처음에는 선이 보이지 않음 */
+    animation: draw 7s forwards; /* 선 그려지는 애니메이션 */
+}
+
+
+svg#bg2{
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: var(--main-color1);
+    /* stroke: var(--w-color); */
+    stroke-width: 1px;
+    stroke-dasharray: 5000; /* 경로 길이에 맞는 대시의 크기 */
+    stroke-dashoffset: 5000; /* 처음에는 선이 보이지 않음 */
+    animation: draw 15s forwards; /* 선 그려지는 애니메이션 */
+}
+
+svg#bg3{
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: var(--main-color1);
+    /* fill: var(--w-color); */
+}
+
+/* header */
+
+header {
+    width: 100%;
+    height: 120px;
+    position: fixed;
+    left: 0;
+    top: 0px;
+    z-index: 100;
+    transform: translateY(-100%);
+    /* 처음에는 화면 밖에 위치 */
+    transition: transform .8s ease-in-out;
+    /* 슬라이딩 애니메이션 효과 */
+}
+
+header .top {
+    width: 100%;
+    height: 30px;
+    background-image: url(../img/wep/top.jpg);
+}
+
+header nav {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #BEBEBE;
+    padding: 0 120px;
+    background: #fff;
+}
+
+header .right {
+    display: flex;
+    gap: 35px;
+    font-size: 20px;
+    font-weight: 600;
+    align-items: center;
+    color: var(--main-color1);
+}
+
+/* header .right li:hover a:active{
+    transform: scale(1.2);
+} */
+
+header .right li a img {
+    transition: transform 0.2s ease-in-out;
+}
+
+/* 클릭(눌렀을 때) 아이콘 확대 */
+header .right li a:hover img {
+    transform: scale(1.2);
+}
+
+
+
+
+
+
+
+header .left {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    width: 1200px;
+}
+
+header .left ul.gnb {
+    display: flex;
+    width: 100%;
+    z-index: 200;
+}
+
+header .left ul.gnb>li {
+    position: relative;
+    flex: 1;
+}
+
+header .left ul.gnb>li>a {
+    font-size: 20px;
+    font-weight: 400;
+    color: #464646;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    padding-right: 11px;
+}
+
+header .left ul.gnb>li:hover>a {
+    color: var(--main-color1);
+    font-weight: 600;
+}
+
+
+
+
+/* GNB 블러 효과 */
+header .left ul.gnb>li>ul.sub {
+    width: 170px;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    z-index: 3;
+    border-radius: 0 0 10px 10px;
+    padding: 0 8px;
+    backdrop-filter: blur(10px);
+    border: 2px solid #BEBEBE;
+    border-top: 0;
+    background: rgba(255, 255, 255, 0.5);
+
+    /* 애니메이션 효과 추가 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+/* hover 시 서브메뉴 등장 */
+header .left ul.gnb>li:hover>ul.sub {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* 서브메뉴 아이템 스타일 */
+header .left ul.gnb>li>ul.sub>li {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    position: relative;
+}
+
+header .left ul.gnb>li>ul.sub>li:hover {
+    color: var(--main-color1);
+    border-bottom: 1px solid var(--main-color1);
+}
+
+header .left ul.gnb>li>ul.sub>li:hover:last-child {
+    border-bottom: none;
+}
+
+header .left ul.gnb>li>ul.sub>li>a {
+    font-size: 18px;
+    font-weight: 400;
+    color: #484848;
+    text-align: center;
+    display: block;
+    height: 100%;
+    line-height: 40px;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 기존 텍스트 */
+header .left ul.gnb>li>ul.sub>li>a span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+/* 새 텍스트 */
+header .left ul.gnb>li>ul.sub>li>a::after {
+    content: attr(data-hover);
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* transform: translateY(50%); */
+    width: 100%;
+    font-weight: 600;
+    color: var(--main-color1);
+    transform: translateY(15px);
+    opacity: 0;
+    height: 60px;
+}
+
+/* hover 시 효과 */
+header .left ul.gnb>li>ul.sub>li>a:hover span {
+    opacity: 0;
+}
+
+header .left ul.gnb>li>ul.sub>li>a:hover::after {
+    opacity: 1;
+}
+
+.gnb>li>a {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+header .left ul.gnb>li>ul.sub>li>a:hover {
+    color: transparent;
+}
+
+header .left ul.gnb>li>ul.sub>li>a:hover::before {
+    /* transform: translateY(0); */
+    opacity: 1;
+}

@@ -1,0 +1,724 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/* font-family: "IBM Plex Sans JP", sans-serif; */
+/* font-family: "Noto Sans KR", sans-serif; */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #86A4FF;
+    --sub-03: #ABA8FF;
+    --grad-01: #D6D6FF;
+    --grad-03: #ABE2FB;
+    --gradient-bg: linear-gradient(135deg, var(--grad-01), var(--main-color), var(--grad-03));
+    --text-gray: #808080;
+    --B-color: #333;
+    --w-color: #fff;
+    --Noto-Sans: "Noto Sans KR", sans-serif;
+    --IBM-Plex-Sans: "IBM Plex Sans JP", sans-serif;
+}
+
+html,
+body {
+    font-family: var(--noto-sans);
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
+}
+
+
+body.scroll-lock {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.wrap {
+    position: relative;
+    height: auto;
+    overflow: hidden;
+}
+
+.section.line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+}
+
+/* 가짜 스크롤 높이 조절 (스크롤 분량 지정) */
+/* .fake-scroll {
+    height: 300vh;
+} */
+
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.glass-bubble {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    animation: float 5s ease-in-out infinite alternate;
+    transition: transform 0.5s ease;
+    z-index: 8;
+}
+
+/* 위치 각각 다르게 */
+.bubble1 {
+    top: 140px;
+    left: -310px;
+    width: 645px;
+    height: 730px;
+    background: rgba(255, 150, 255, 0.3);
+    filter: blur(90px);
+    z-index: 1;
+}
+
+.bubble2 {
+    bottom: -250px;
+    left: -150px;
+    width: 670px;
+    height: 530px;
+    background: rgba(197, 229, 255, 0.5);
+    filter: blur(80px);
+    z-index: 3;
+}
+
+.bubble3 {
+    top: -115px;
+    left: -120px;
+    width: 590px;
+    height: 420px;
+    background: rgba(197, 205, 224, 0.6);
+    filter: blur(80px);
+    z-index: 3;
+}
+
+.bubble4 {
+    top: -250px;
+    right: -100px;
+    width: 643px;
+    height: 492px;
+    background: rgba(231, 171, 255, 0.5);
+    filter: blur(130px);
+}
+
+.bubble5 {
+    bottom: -300px;
+    right: 280px;
+    width: 800px;
+    height: 492px;
+    background: rgba(105, 97, 255, 0.4);
+    filter: blur(130px);
+}
+
+.bubble6 {
+    bottom: 5%;
+    right: -420px;
+    width: 700px;
+    height: 700px;
+    background: rgba(255, 255, 255, 0.5);
+    filter: blur(180px);
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0) scale(1);
+    }
+
+    100% {
+        transform: translate(-100px) scale(1.2);
+    }
+}
+
+.dot-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    z-index: 20;
+}
+
+.dot-group {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: 680px;
+    transform-origin: center center;
+}
+
+
+.dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--main-color);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* 초기 상태 고정 */
+}
+
+.line_center {
+    width: 700px;
+    height: 4px;
+    background-color: var(--main-color);
+    transform: scaleX(0);
+    transform-origin: center center;
+    opacity: 0;
+    /* 초기 상태 고정 */
+}
+
+.text-group {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    color: var(--main-color);
+    mix-blend-mode: exclusion;
+    /* 🔥 또는 lighten 등 시도 */
+    pointer-events: none;
+    text-align: center;
+}
+
+.text-up {
+    font-size: 80px;
+    font-weight: 700;
+    font-family: var(--IBM-Plex-Sans);
+    color: var(--main-color);
+    opacity: 0;
+    transform: translateY(70px);
+}
+
+.text-down {
+    font-size: 70px;
+    color: var(--text-gray);
+    font-family: var(--Noto-Sans);
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(-70px);
+}
+
+
+.circle-mask {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 680px;
+    height: 680px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    /* 텍스트보다 위 */
+    background-color: white;
+    pointer-events: none;
+
+    /* 회전되는 채우기 영역 → 마스크 X, 그냥 배경! */
+    mask-image: conic-gradient(white 0deg 0deg, transparent 0deg 360deg);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: cover;
+
+}
+
+
+.side-gnb {
+    width: 67px;
+    height: 320px;
+    position: fixed;
+    left: 91px;
+    top: 53%;
+    transform: translateY(-50%);
+    /* 살짝 아래에 있게 */
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    z-index: 1000;
+}
+
+.side-gnb ul {
+    display: flex;
+    flex-direction: column;
+    gap: 57px;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-gnb ul li:nth-child(1) {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--w-color);
+    transition: .3s;
+}
+
+.side-gnb ul li:nth-child(1):hover {
+    transform: scale(1.4);
+}
+
+.side-gnb a {
+    display: block;
+    /* ✅ 필수 */
+    width: 100%;
+    height: 100%;
+}
+
+.side-gnb ul li:nth-child(2) {
+    width: 52px;
+    height: 5px;
+    border-radius: 5px;
+    background: var(--w-color);
+    transition: .3s;
+}
+
+.side-gnb ul li:nth-child(2):hover {
+    transform: rotate(-35deg);
+}
+
+
+.side-gnb ul li:nth-child(3) {
+    width: 52px;
+    height: 52px;
+    border-radius: 7px;
+    border: 5px solid var(--w-color);
+    transition: .3s;
+}
+
+.side-gnb ul li:nth-child(3):hover {
+    background: var(--w-color);
+}
+
+.gnb4{
+    transition: transform 0.8s ease;
+    transform-origin: center center;
+}
+
+.gnb4:hover {
+    transform: rotate(360deg);
+}
+
+.scroll-hint {
+    position: absolute;
+    right: 82px;
+    bottom: 56px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.circle-draw-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circle-draw-container {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    animation: rotate 2s linear forwards;
+}
+
+.circle-outline {
+    width: 100%;
+    height: 100%;
+    border: 1.5px solid var(--main-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+}
+
+.dot-tracer {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: shrink 2s ease-in forwards;
+    animation-delay: 1.5s;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shrink {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+.dot-rotate-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 640px;
+    height: 640px;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.circle-path-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 640px;
+}
+
+.spin-dot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background-color: #86A4FF;
+    border-radius: 50%;
+    transform-origin: center 320px;
+    /* 원 중심 기준으로 회전 */
+}
+
+.circle-fill-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 640px;
+    background-image: url('../img/Ellipse\ 8\ copy\ 2.png');
+    /* 이미지 경로로 변경 */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    opacity: 0;
+    /* 회전 후 등장하게 하려면 처음엔 숨김 */
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.vertical-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 100vh;
+    /* 전체 높이 고정 */
+    background: linear-gradient(to bottom, var(--main-color) 0%, var(--main-color) 100%);
+    background-size: 100% 0%;
+    /* ✅ 처음엔 보이지 않게 */
+    background-repeat: no-repeat;
+    background-position: top;
+    opacity: 1;
+    z-index: 0;
+}
+
+.horizontal-line {
+    position: fixed;
+    top: 63%;
+    left: 95%;
+    transform: translateY(-50%);
+    height: 3px;
+    width: 0;
+    background-color: var(--main-color);
+    z-index: 0;
+    opacity: 0;
+}
+
+.horizontal_line_right {
+    position: fixed;
+    top: 63%;
+    left: 1080px;
+    transform: translateY(-50%);
+    height: 3px;
+    width: 0;
+    background-color: var(--main-color);
+    z-index: 10;
+    /* 높여서 가려지지 않도록 */
+    opacity: 0;
+}
+
+.text {
+    position: absolute;
+    left: 750px;
+    top: 80px;
+    width: 520px;
+}
+
+.text p {
+    font-family: var(--Noto-Sans);
+    font-size: 48px;
+    font-weight: 300;
+    color: #333;
+    line-height: 120px;
+    opacity: 0;
+    /* 처음엔 숨김 */
+    transform: translateY(20px);
+}
+
+.text p span {
+    font-weight: 500;
+}
+
+.text p strong {
+    font-weight: 700;
+    color: var(--main-color);
+}
+
+
+
+/* .floating-icons {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 380px);
+    transform: translateY(-50%);
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    z-index: 15;
+} */
+
+.floating-icons {
+    position: absolute;
+    top: 46%;
+    left: calc(50% + 380px);
+    transform: translateY(-50%);
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+}
+
+.icon {
+    animation: float 1.2s ease-in-out infinite alternate;
+    background: #000;
+}
+
+.icon-dot {
+    position: absolute;
+    left: 66px;
+    top: 150px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation-delay: 0.2s;
+
+}
+
+.icon-line {
+    position: absolute;
+    left: 66px;
+    top: 268px;
+    width: 12px;
+    height: 4px;
+    animation-delay: 0.4s;
+
+}
+
+.icon-plane {
+    position: absolute;
+    right: 304px;
+    top: 268px;
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    animation-delay: 0.6s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+.history {
+    position: fixed;
+    top: 10px;
+    left: 40px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    /* 안 보일 땐 클릭 방지 */
+}
+
+.history svg {
+    transform: scale(0.9);
+    /* 0.5~0.9 사이로 조절 가능 */
+    transform-origin: center center;
+}
+
+.history-path {
+    stroke-dasharray: 2000;
+    /* 이 값은 JS에서도 조정됨 */
+    stroke-dashoffset: 2000;
+    opacity: 1;
+    transition: none;
+}
+
+
+
+
+
+.fourth-scroll-trigger {
+    height: 100vh;
+    /* 필수! 스크롤 트리거로 인식되려면 충분한 높이 필요 */
+    position: relative;
+    z-index: 10;
+}
+
+
+/* 애니메이션 대상 */
+.new-svg {
+    position: fixed;
+    /* 화면 고정 */
+    top: 80px;
+    left: 250px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 20;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+/* 스케치 효과용 초기 상태 */
+.new-svg path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    opacity: 1;
+    transition: none;
+    pointer-events: none !important;
+    /* 이게 있어야 GNB 클릭 가능 */
+}
+
+.ex {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  font-weight: 500;
+  font-family: var(--IBM-Plex-Sans);
+  color: var(--main-color);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.new-svg-2 {
+  position: fixed;
+  top: -50px;
+  left: 180px;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  z-index: 20;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+.new-svg-2 path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  opacity: 1;
+}
+
+.ex2 {
+  position: fixed;
+  top: 110px;
+  left:600px;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  z-index: 20;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+.ex2 path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  opacity: 1;
+}
+
+
+.scroll-lock {
+    overflow: hidden;
+}
+
+.fourth-scroll-trigger {
+    height: 100vh;
+    position: relative;
+    z-index: 20;
+}
+
+.stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body.scroll-lock {
+    overflow: hidden;
+    height: 100vh;
+    /* 반드시 필요 */
+}
+
+.third-scroll-trigger,
+.fourth-scroll-trigger {
+    height: 100vh;
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="점에서 시작해 입체로 성장하는 인터랙티브 UX/UI 디자이너 안희정의 포트폴리오입니다.">
+  <meta name="keywords" content="UX디자인, UI디자인, 포트폴리오, 안희정, 인터랙션, 점선면입체">
+  <meta name="author" content="an heejung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>an heejung | Portfolio</title>
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/e9623bd7b2.js" crossorigin="anonymous"></script>
+  <!-- 제이쿼리 코드 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <!-- 내꺼 제이쿼리 -->
+  <script src="js/space.js" defer></script>
+  <!-- 파비콘 -->
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <!-- swiper css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- swiper js -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- jQuery 및 AOS 라이브러리 추가 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- gsap -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
+
+  <!-- 내꺼 css -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/space.css">
+</head>
+
+<body>
+
+  <div class="background"></div>
+  <div class="white-fill"></div>
+
+  <div class="dots-wrapper">
+    <div class="dot dot1"></div>
+    <div class="dot dot2"></div>
+  </div>
+
+  <nav class="side_gnb">
+            <ul>
+                <li><a href="../intro.html" class="section_dot"></a></li>
+                <li><a href="../line/index.html" class="section_line"></a></li>
+                <li><a href="./space.html" class="section_sapce"></a></li>
+                <li><a href="../3D/index.html" class="section_3d"><img src="../img/gnb4.png" alt="gnb4"></a></li>
+            </ul>
+        </nav><!-- //.side_gnb -->
+
+        <div class="scroll_hint">
+            <svg width="36" height="20" viewBox="0 0 36 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L18 18L34 2" stroke="white" stroke-width="3" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+
+
+  <!-- mask-wrapper 두 개 -->
+  <div class="mask-wrapper left"></div>
+  <div class="mask-wrapper right"></div>
+
+  <!-- 하나만 있는 text-wrapper -->
+  <div class="text-wrapper">
+    <h3><span class="highlight">Plane,</span> Project</h3>
+  </div>
+
+  <div class="new-fill"></div>
+
+  <div class="next-wrapper">
+    <h3><span>선</span>들이 모여 <span>면</span>을 만들다</h3>
+  </div>
+
+  <div class="background2"></div>
+
+      <section>
+        <!-- wave 정의 -->
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="wave">
+                <path d="M0,10 Q35,20 70,10 T140,10 T210,10 T280,10 T350,10 T420,10 T490,10 T560,10 V20 H0 Z"></path>
+            </symbol>
+        </svg>
+        <!-- clip-path 정의 -->
+        <svg width="0" height="0" class="clip-svg">
+            <defs>
+                <clipPath id="clip-shape1">
+                    <path d="M304.284 269H1.71582L153 2.02832L304.284 269Z" />
+                </clipPath>
+                <clipPath id="clip-shape2">
+                    <path d="M254 1V254H1V1H254Z" />
+                </clipPath>
+                <clipPath id="clip-shape3">
+                    <path d="M292.864 106.604L250.046 277H43.9541L1.13477 106.604L147.009 1.2334L292.864 106.604Z" />
+                </clipPath>
+                <clipPath id="clip-shape4">
+                    <path d="M233.431 1L310.837 131.5L233.431 262H78.5693L1.16211 131.5L78.5693 1H233.431Z" />
+                </clipPath>
+            </defs>
+        </svg>
+
+
+        <!-- 도형별 wave+선+점 애니메이션 SVG -->
+        <div class="wave-fill-wrapper">
+            <!-- shape1 -->
+            <svg class="wave-fill shape1" width="306" height="270" viewBox="0 0 306 270">
+                <g clip-path="url(#clip-shape1)">
+                    <rect class="fill-rect" x="0" y="270" width="306" height="270" fill="#fff"/>
+                    <g class="wave-group">
+                        <use xlink:href="#wave" class="water_wave water_wave_back" fill="white" y="250" />
+                        <use xlink:href="#wave" class="water_wave water_wave_front" fill="white" y="250" />
+                    </g>
+                    <path class="draw-path" d="M304.284 269H1.71582L153 2.02832L304.284 269Z" stroke="white" stroke-width="2" fill="none"/>
+                </g>
+            </svg>
+            <!-- shape2 -->
+            <svg class="wave-fill shape2" width="255" height="255" viewBox="0 0 255 255">
+                <g clip-path="url(#clip-shape2)">
+                    <rect class="fill-rect" x="0" y="255" width="255" height="255" fill="#fff"/>
+                    <g class="wave-group">
+                        <use xlink:href="#wave" class="water_wave water_wave_back" fill="white" y="235" />
+                        <use xlink:href="#wave" class="water_wave water_wave_front" fill="white" y="235" />
+                    </g>
+                    <path class="draw-path" d="M254 1V254H1V1H254Z" stroke="white" stroke-width="2" fill="none"/>
+                </g>
+            </svg>
+            <!-- shape3 -->
+            <svg class="wave-fill shape3" width="294" height="278" viewBox="0 0 294 278">
+                <g clip-path="url(#clip-shape3)">
+                    <rect class="fill-rect" x="0" y="278" width="294" height="278" fill="#fff"/>
+                    <g class="wave-group">
+                        <use xlink:href="#wave" class="water_wave water_wave_back" fill="white" y="258" />
+                        <use xlink:href="#wave" class="water_wave water_wave_front" fill="white" y="258" />
+                    </g>
+                    <path class="draw-path" d="M292.864 106.604L250.046 277H43.9541L1.13477 106.604L147.009 1.2334L292.864 106.604Z"
+                        stroke="white" stroke-width="2" fill="none"/>
+                </g>
+            </svg>
+            <!-- shape4 -->
+            <svg class="wave-fill shape4" width="312" height="263" viewBox="0 0 312 263">
+                <g clip-path="url(#clip-shape4)">
+                    <rect class="fill-rect" x="0" y="263" width="312" height="263" fill="#fff"/>
+                    <g class="wave-group" >
+                        <use xlink:href="#wave" class="water_wave water_wave_back" fill="white" y="243" />
+                        <use xlink:href="#wave" class="water_wave water_wave_front" fill="white" y="243" />
+                    </g>
+                    <path class="draw-path" d="M233.431 1L310.837 131.5L233.431 262H78.5693L1.16211 131.5L78.5693 1H233.431Z"
+                        stroke="white" stroke-width="2" fill="none"/>
+                </g>
+            </svg>
+        </div>
+    </section>
+
+  <div class="project">
+    <div class="left_bg">
+      <svg width="1378" height="1378" viewBox="0 0 1378 1378" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="688.957" cy="688.957" r="688.957" fill="url(#paint0_linear_1880_10)" />
+        <defs>
+          <linearGradient id="paint0_linear_1880_10" x1="545.863" y1="-113.621" x2="851.033" y2="1441.45"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F4C4FF" />
+            <stop offset="0.618426" stop-color="#E5D8FF" />
+            <stop offset="1" stop-color="#B8ACFF" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div><!-- //.left_bg -->
+    <div class="tit">
+      <h3>
+        project
+        <p>ALL</p>
+      </h3>
+    </div><!-- //.tit -->
+
+
+    <div class="project_gnb">
+      <ul>
+        <li><a href="">
+            <div class="icon1">
+              <svg width="91" height="82" viewBox="0 0 91 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M49.7903 3.32438C47.9635 0.0999322 43.3179 0.0999431 41.4911 3.32439L1.03383 74.7356C-0.767386 77.915 1.52929 81.8557 5.1834 81.8557H86.098C89.7521 81.8557 92.0488 77.9149 90.2476 74.7356L49.7903 3.32438Z"
+                  fill="#008CFF" />
+              </svg>
+            </div><!-- //.icon1 -->
+            <h5>ALL</h5>
+          </a></li>
+        <li><a href="">
+            <div class="icon2">
+              <svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M76.3077 0H4.76923C2.13526 0 0 2.13526 0 4.76923V76.3077C0 78.9417 2.13526 81.0769 4.76923 81.0769H76.3077C78.9417 81.0769 81.0769 78.9417 81.0769 76.3077V4.76923C81.0769 2.13526 78.9417 0 76.3077 0Z"
+                  fill="white" />
+              </svg>
+            </div><!-- //.icon2 -->
+            <h5>PERSONAL</h5>
+          </a></li>
+        <li><a href="">
+            <div class="icon3">
+              <svg width="93" height="88" viewBox="0 0 93 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M49.5342 1.01751C47.8672 -0.186815 45.6159 -0.186883 43.9487 1.01734L2.62071 30.87C1.03823 32.0131 0.312141 34.0052 0.787912 35.8984L12.821 83.7829C13.3538 85.9032 15.2601 87.3897 17.4464 87.3897H76.0305C78.2168 87.3897 80.1231 85.9032 80.6559 83.7829L92.6891 35.8982C93.1648 34.0051 92.4388 32.0131 90.8565 30.87L49.5342 1.01751Z"
+                  fill="white" />
+              </svg>
+            </div><!-- //.icon3 -->
+            <h5>TEAM</h5>
+          </a></li>
+        <li><a href="">
+            <div class="icon4">
+              <svg width="99" height="84" viewBox="0 0 99 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M75.7857 2.33616C74.9267 0.887925 73.3676 0 71.6838 0H27.5162C25.8324 0 24.2733 0.887922 23.4143 2.33616L1.44319 39.3772C0.553439 40.8772 0.553439 42.7433 1.44319 44.2433L23.4143 81.2843C24.2733 82.7326 25.8324 83.6205 27.5162 83.6205H71.6838C73.3676 83.6205 74.9267 82.7326 75.7857 81.2843L97.7568 44.2433C98.6466 42.7433 98.6466 40.8772 97.7568 39.3772L75.7857 2.33616Z"
+                  fill="white" />
+              </svg>
+            </div><!-- //.icon4 -->
+            <h5>PREVIOUS</h5>
+          </a></li>
+      </ul>
+    </div><!-- //.project_gnb -->
+    <div class="right_bg">
+      <svg width="2255" height="2584" viewBox="0 0 2255 2584" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_f_1880_18)">
+          <ellipse cx="1323.55" cy="772.65" rx="432.097" ry="270.693" transform="rotate(-4.76486 1323.55 772.65)"
+            fill="#E9B2FF" fill-opacity="0.7" />
+        </g>
+        <g filter="url(#filter1_f_1880_18)">
+          <ellipse cx="904.704" cy="1139.03" rx="315.639" ry="295.896" transform="rotate(-4.76486 904.704 1139.03)"
+            fill="#B2C5FF" />
+        </g>
+        <g filter="url(#filter2_f_1880_18)">
+          <ellipse cx="957.362" cy="1802.79" rx="456.648" ry="280.559" transform="rotate(-0.351673 957.362 1802.79)"
+            fill="#6961FF" fill-opacity="0.6" />
+        </g>
+        <defs>
+          <filter id="filter0_f_1880_18" x="392.354" y="0.484375" width="1862.4" height="1544.33"
+            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_1880_18" />
+          </filter>
+          <filter id="filter1_f_1880_18" x="389.182" y="642.977" width="1031.04" height="992.113"
+            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1880_18" />
+          </filter>
+          <filter id="filter2_f_1880_18" x="0.71875" y="1022.22" width="1913.29" height="1561.14"
+            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_1880_18" />
+          </filter>
+        </defs>
+      </svg>
+    </div><!-- //.right_bg -->
+
+    <ul class="project_con">
+      <li><a href="">
+          <div class="top">
+            <div class="txt">
+              <h4>
+                TEAM
+                <p>FINPICK</p>
+              </h4>
+            </div><!-- //.txt -->
+            <div class="icon">
+              <svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.0854 0.923739C15.3221 0.372326 14.2913 0.372293 13.528 0.923659L1.19992 9.82867C0.475361 10.352 0.142917 11.2641 0.360753 12.131L3.93354 26.3486C4.1775 27.3194 5.05032 28 6.05133 28H23.5602C24.5612 28 25.434 27.3194 25.678 26.3486L29.2508 12.1309C29.4686 11.2641 29.1362 10.352 28.4117 9.82865L16.0854 0.923739Z"
+                  fill="#008CFF" />
+              </svg>
+            </div><!-- //.icon -->
+          </div><!-- //.top -->
+          <div class="project_img">
+            <img src="img/finpick.png" alt="finpick">
+          </div><!-- //.project_img -->
+          <div class="btn">
+            <div class="prototype">Prototype</div>
+            <div class="Landing">Landing</div>
+          </div><!-- //.btn -->
+        </a></li>
+      <li><a href="">
+          <div class="top">
+            <div class="txt">
+              <h4>
+                TEAM
+                <p>FINPICK</p>
+              </h4>
+            </div><!-- //.txt -->
+            <div class="icon">
+              <svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.0854 0.923739C15.3221 0.372326 14.2913 0.372293 13.528 0.923659L1.19992 9.82867C0.475361 10.352 0.142917 11.2641 0.360753 12.131L3.93354 26.3486C4.1775 27.3194 5.05032 28 6.05133 28H23.5602C24.5612 28 25.434 27.3194 25.678 26.3486L29.2508 12.1309C29.4686 11.2641 29.1362 10.352 28.4117 9.82865L16.0854 0.923739Z"
+                  fill="#008CFF" />
+              </svg>
+            </div><!-- //.icon -->
+          </div><!-- //.top -->
+          <div class="project_img">
+            <img src="img/finpick.png" alt="finpick">
+          </div><!-- //.project_img -->
+          <div class="btn">
+            <div class="prototype">Prototype</div>
+            <div class="Landing">Landing</div>
+          </div><!-- //.btn -->
+        </a></li>
+    </ul><!-- //.project_con -->
+  </div><!-- //.project -->
+
+</body>
+
+
+</html>
