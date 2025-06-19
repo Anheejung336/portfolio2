@@ -1,0 +1,141 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/* font-family: "IBM Plex Sans JP", sans-serif; */
+/* font-family: "Noto Sans KR", sans-serif; */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #86A4FF;
+    --sub-03: #ABA8FF;
+    --grad-01: #D6D6FF;
+    --grad-03: #ABE2FB;
+    --gradient-bg: linear-gradient(135deg, var(--grad-01), var(--main-color), var(--grad-03));
+    --text-gray: #808080;
+    --B-color: #333;
+    --w-color: #fff;
+    --Noto-Sans: "Noto Sans KR", sans-serif;
+    --IBM-Plex-Sans: "IBM Plex Sans JP", sans-serif;
+}
+
+body {
+    overflow: auto;
+    font-family: var(--noto-sans);
+    overflow-x: hidden;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+/* gnb */
+
+.side_gnb {
+    width: 67px;
+    height: 320px;
+    position: fixed;
+    left: 91px;
+    top: 53%;
+    transform: translateY(-50%);
+    opacity: 0;
+    /* transition: opacity 0.8s ease, transform 0.8s ease; */
+    z-index: 50;
+}
+
+/* GNB 등장 */
+
+.side_gnb ul {
+    display: flex;
+    flex-direction: column;
+    gap: 57px;
+    justify-content: center;
+    align-items: center;
+}
+
+.side_gnb ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 공통 */
+.side_gnb a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 1번: 동그라미 버튼 */
+
+.side_gnb ul li:nth-child(1) a {
+    transition: 0.3s;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--w-color);
+    position: absolute;
+    left: 20px;
+    top: -33px;
+}
+
+.side_gnb ul li:nth-child(1) a:hover {
+    transform: scale(1.4);
+}
+
+/* 2번: 선형 회전 버튼 */
+.side_gnb ul li:nth-child(2) a {
+    width: 52px;
+    height: 5px;
+    border-radius: 5px;
+    background: var(--w-color);
+    transition: 0.1s;
+}
+
+.side_gnb ul li:nth-child(2) a:hover {
+    transform: rotate(-35deg);
+}
+
+/* 3번: 사각 테두리 버튼 */
+.side_gnb ul li:nth-child(3) a {
+    width: 52px;
+    height: 52px;
+    border-radius: 7px;
+    border: 5px solid var(--w-color);
+    transition: 0.1s;
+}
+
+.side_gnb ul li:nth-child(3) a:hover {
+    background: var(--w-color);
+}
+
+/* 스크롤힌트 */
+
+.scroll_hint {
+    position: fixed;
+    right: 82px;
+    bottom: 56px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--w-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(30px);
+    /* 살짝 아래에 있게 */
+    pointer-events: none;
+    z-index: 30;
+}
+
+.intro.show_scroll .scroll_hint {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}

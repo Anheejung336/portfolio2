@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="점에서 시작해 입체로 성장하는 인터랙티브 UX/UI 디자이너 안희정의 포트폴리오입니다.">
+    <meta name="keywords" content="UX디자인, UI디자인, 포트폴리오, 안희정, 인터랙션, 점선면입체">
+    <meta name="author" content="an heejung">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>an heejung | Portfolio</title>
+
+    <!-- 내꺼 css -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/intro.css">
+    <link rel="stylesheet" href="css/dot.css">
+    <link rel="stylesheet" href="css/line.css">
+
+    <!-- 제이쿼리 코드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 내꺼 js -->
+    <script src="js/intro.js"></script>
+    <script src="js/dot.js"></script>
+    <script src="js/line.js"></script>
+
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/e9623bd7b2.js" crossorigin="anonymous"></script>
+
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- swiper css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="intro">
+            <div id="bar" class="progress-bar"></div>
+            <div class="intro_dot" id="intro_dot"></div>
+            <div class="intro_text">
+                <span class="active">HELLO</span>
+                <span>Im</span>
+                <span>HEE JUNG</span>
+            </div>
+        </div><!-- //.intro -->
+
+        <nav class="side_gnb">
+            <ul>
+                <li><a href="#dot" class="section_dot"></a></li>
+                <li><a href="../portfolio2/line/index.html" class="section_line"></a></li>
+                <li><a href="../portfolio2/space_re/space.html" class="section_sapce"></a></li>
+                <li><a href="#" class="section_3d"><img src="img/gnb4.png" alt="gnb4"></a></li>
+            </ul>
+        </nav><!-- //.side_gnb -->
+
+        <div class="scroll_hint">
+            <svg width="36" height="20" viewBox="0 0 36 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L18 18L34 2" stroke="white" stroke-width="3" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+
+
+
+        <section class="section_dot" id="dot">
+
+            <div class="dot_bg"></div>
+            <div class="dots_container">
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+                <div class="dot_item"></div>
+            </div><!-- ../dots_container -->
+            <div class="center_text">
+                <h2>Dot,</h2>
+                <p>My beginning</p>
+            </div><!-- //.center_text -->
+
+            <div class="next_text">
+                <p>디자인의 한 <strong>점</strong>에서 <strong>시작</strong></p>
+            </div>
+
+            <!-- 수축 후 튀어오를 점들 -->
+            <div class="burst_dots">
+                <div class="big_dot"></div>
+                <div class="small_dot"></div>
+            </div>
+
+            <!-- 새로운 텍스트 -->
+            <div class="third_text">
+                <p><strong>About me</strong></p>
+            </div>
+
+            <div class="dot_jump" id="dot_jump"></div>
+
+            <div class="profile_info">
+                <div class="info_group group1">
+                    <p>Contact</p>
+                    <ul>
+                        <li>
+                            <img src="img/user.png" alt="사람 아이콘">
+                            <div class="text-wrap">
+                                <div>안희정</div>
+                                <div class="sub">1999-08-14</div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/phone.png" alt="전화 아이콘">
+                            <span>010.5919.5187</span>
+                        </li>
+                        <li>
+                            <img src="img/mail.png" alt="메일 아이콘">
+                            <span>moonetyy@naver.com</span>
+                        </li>
+                        <li>
+                            <img src="img/home.png" alt="집 아이콘">
+                            <span>서울시 구로구 구로동</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info_group group2">
+                    <p>Character</p>
+                    <ul>
+                        <li><span>#</span><span>INFP</span></li>
+                        <li><span>#</span><span>활동적</span></li>
+                        <li><img src="img/video.png"><span>영화보기</span></li>
+                        <li><img src="img/music.png"><span>음악감상</span></li>
+                        <li><img src="img/git-pull-request.png"><span>체험하기</span></li>
+                    </ul>
+                </div>
+
+                <div class="info_group group3">
+                    <p>Portfolio Link</p>
+                    <ul>
+                        <li><a href="#">Link1</a></li>
+                        <li><a href="#">Link2</a></li>
+                        <li><a href="#">Link3</a></li>
+                        <li><a href="#">Link4</a></li>
+                        <li><a href="#">Link5</a></li>
+                    </ul>
+                </div>
+
+
+
+        </section><!-- //#dot -->
+
+        <section class="section line">
+
+
+
+        </section><!-- //.section line -->
+
+
+
+
+    </div><!-- //.wrapper -->
+</body>
+
+</html>

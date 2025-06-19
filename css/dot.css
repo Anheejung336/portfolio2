@@ -1,0 +1,308 @@
+@charset "utf-8";
+
+/* section */
+
+.section_dot {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 15;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* bg */
+
+.dot_bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vmax;
+  height: 100vmax;
+  background-image: url("../img/dot_bg.png");
+  background-size: cover;
+  background-position: center;
+  transform: translate(-50%, -50%) scale(0);
+  clip-path: circle(0% at 50% 50%);
+  opacity: 0;
+  z-index: 15;
+  transition:
+    width 0.8s ease,
+    height 0.8s ease,
+    opacity 0.8s ease;
+}
+
+.dot_bg.expand {
+  width: 3000px;
+  height: 3000px;
+  opacity: 1;
+}
+
+/* dot 8개 */
+
+.dots_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 760px;
+  height: 760px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+  z-index: 18;
+}
+
+.dot_item {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* 8개 점을 원형으로 배치 (JS 없이 정적으로) */
+.dots_container .dot_item:nth-child(1) {
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(2) {
+  top: 18%;
+  left: 82%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(3) {
+  top: 50%;
+  left: 97%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(4) {
+  top: 82%;
+  left: 82%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(5) {
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(6) {
+  top: 82%;
+  left: 18%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(7) {
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+.dots_container .dot_item:nth-child(8) {
+  top: 18%;
+  left: 18%;
+  transform: translate(-50%, -50%);
+}
+
+/* 첫 번째 텍스트 */
+
+.center_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--w-color);
+  opacity: 0;
+  transition: opacity 1s ease;
+  font-family: var(--IBM-Plex-Sans);
+  pointer-events: none;
+  z-index: 18;
+}
+
+.center_text h2 {
+  font-size: 70px;
+  font-weight: 800;
+}
+
+.center_text p {
+  font-size: 60px;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+
+/* 두 번째 텍스트 */
+
+
+.next_text {
+  position: absolute;
+  top: 53%;
+  /* 처음엔 60% 위치 */
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  text-align: center;
+  opacity: 0;
+  /* transition: opacity 1s ease, transform 1s ease, top 1s ease; */
+  color: var(--w-color);
+  font-family: var(--noto-sans);
+  font-size: 65px;
+  z-index: 30;
+}
+
+.next_text strong {
+  font-weight: 600;
+}
+
+.next_text p {
+  font-weight: 200;
+}
+
+.next_text.shrink-up {
+  transform: translate(-50%, -80%) scale(0.1);
+  opacity: 0;
+  transition: transform 1.5s ease, opacity 1s ease;
+}
+
+
+/* 튕겨오르는 점 */
+
+.burst_dots {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.big_dot {
+  position: absolute;
+  top: 47%;
+  left: 43%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--w-color);
+  opacity: 0;
+}
+
+.small_dot {
+  position: absolute;
+  top: 55%;
+  left: 60%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--w-color);
+  opacity: 0;
+}
+
+/* about */
+
+.third_text {
+  position: absolute;
+  top: 1000px;
+  /* 시작은 더 아래에서 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--IBM-Plex-Sans);
+  color: var(--w-color);
+  font-size: 60px;
+  font-weight: 600;
+  opacity: 0;
+  z-index: 40;
+}
+
+/* 점프용 dot 스타일 */
+#dot_jump {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.group1,
+.group2,
+.group3 {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.profile_info {
+  position: absolute;
+  top: 33%;
+  left: 62%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 120px;
+  z-index: 30;
+  text-align: left;
+}
+
+.info_group {
+  opacity: 0;
+  transform: translateY(40px);
+  color: var(--w-color);
+  font-size: 23px;
+  font-weight: 300;
+  font-family: var(--noto-sans);
+  transition: all 0.5s ease;
+  line-height: 1.8;
+}
+
+.info_group p {
+  font-weight: 400;
+  font-size: 40px;
+  margin-bottom: 35px;
+  font-family: var(--IBM-Plex-Sans);
+  color: var(--w-color);
+  white-space: nowrap;
+}
+
+/* 각 li 간 여백 */
+.info_group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.info_group ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.info_group img {
+  width: 26px;
+  height: auto;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* 이름 + 생년월일 묶음 */
+.text-wrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.text-wrap .sub {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+
