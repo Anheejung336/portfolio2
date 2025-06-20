@@ -173,35 +173,22 @@ $(function () {
           duration: 0.2
         });
 
-        // ✅ project 등장 및 스크롤 활성화
-        const project = document.querySelector(".project");
-        const projectCon = document.querySelector(".project_con");
-
-        gsap.to(project, {
+        // ✅ project 등장
+        gsap.to(".project", {
           opacity: 1,
-          y: 0,
           duration: 1,
           ease: "power2.out",
           onStart: () => {
+            const project = document.querySelector(".project");
             project.style.pointerEvents = "auto";
-            project.style.overflow = "hidden";
-            project.style.height = "100vh";
 
+            // ✅ 중요: 스크롤 활성화
+            const projectCon = document.querySelector(".project_con");
             projectCon.style.overflowY = "auto";
-            projectCon.style.height = "calc(100vh - 200px)"; // 너가 필요한 값으로 조정 가능
-
-
-
-            // ✅ 강제 리플로우 (레이아웃 재계산)
-            setTimeout(() => {
-              projectCon.style.display = "none";
-              projectCon.offsetHeight;
-              projectCon.style.display = "block";
-            }, 100);
+            projectCon.style.height = "100vh";
           }
         });
       }
     });
-
   }, ">4"); // ⬅ fill 끝나는 시간보다 살짝 늦게 실행
 });

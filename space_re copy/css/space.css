@@ -28,7 +28,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  /* overflow: hidden; */
   width: 100%;
   height: 100%;
   position: relative;
@@ -353,30 +353,22 @@ html {
 }
 
 .project {
+  height: 100%;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 1s ease;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
-  /* ← 강제 고정 */
-  z-index: 20;
-  overflow: hidden;
-  /* ← 스크롤 방지 */
-}
 
-.bg svg {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
 }
 
 .left_bg {
-  position: absolute;
+  position: fixed;
   left: -442px;
   top: -149px;
+  overflow-x: hidden;
 }
 
 .pagenation {
@@ -386,6 +378,18 @@ html {
   position: absolute;
   left: 294px;
   top: 580px;
+}
+
+.project_gnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120px;
+  /* 예시 너비 */
+  height: 100vh;
+  z-index: 10;
+  background: transparent;
+  /* 필요 시 배경 설정 */
 }
 
 .project_gnb ul {
@@ -423,13 +427,16 @@ html {
 }
 
 .right_bg {
-  position: absolute;
+  position: fixed;
   right: -700px;
   top: -750px;
+  pointer-events: none;
+  overflow-x: hidden;
+  /* 클릭 방지 */
 }
 
 .tit {
-  position: absolute;
+  position: fixed;
   left: 294px;
   top: 325px;
 }
@@ -448,28 +455,39 @@ html {
 
 .project_con {
   position: absolute;
-  right: 330px;
+  left: 1100px;
   top: 150px;
+  right: 0;
+  bottom: 0;
   display: flex;
-  height: auto;
   flex-direction: column;
   gap: 50px;
-  padding-bottom: 100px;
-    overflow-x: hidden;
   overflow-y: auto;
-  /* 기존 설정 유지 */
-
-  /* 스크롤바 숨기기 (크로스 브라우저) */
+  /* 내부만 세로 스크롤 허용 */
+  overflow-x: hidden;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
-  /* IE 10+ */
+  /* IE/Edge */
+  height: auto;
+  /* 높이 자동 조정 */
+  width: auto;
+  /* 너비 자동 조정 */
 }
 
 
+
+.project_con ul {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  margin-bottom: 200px;
+  /* 마지막 li도 보이게 하려면 추가 여유 */
+}
+
 .project_con::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Opera */
+  /* Chrome, Safari */
 }
 
 .project_con li {
@@ -479,7 +497,7 @@ html {
   background: rgba(255, 255, 255, .1);
   backdrop-filter: blur(2px);
   border-radius: 20px;
-  margin-top: 50px;
+    position: relative; /* 또는 기본값 */
 }
 
 .project_con li a {
@@ -490,29 +508,6 @@ html {
   padding-top: 30px;
 }
 
-.project_con li:nth-child(1) img {
-  position: absolute;
-  left: 0;
-  top: 130px;
-}
-
-.project_con li:nth-child(2) img {
-  position: absolute;
-  left: 28px;
-  top: 230px;
-}
-
-.project_con li:nth-child(3) img {
-  position: absolute;
-  left: 55px;
-  top: 230px;
-}
-
-.project_con li:nth-child(4) img {
-  position: absolute;
-  left: 95px;
-  top: 200px;
-}
 
 .top {
   width: 477px;
@@ -534,42 +529,57 @@ html {
 }
 
 .txt p {
-  font-size: 60px;
+  font-size: 70px;
   font-weight: 500;
   margin-top: 20px;
 }
 
+.project_img {
+  position: fixed;
+  left: 0;
+  top: 152px;
+}
+
+.project.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .btn {
   position: absolute;
-  left: 0px;
-  bottom: 0px;
-  display: flex;
-  height: 55px;
-  justify-content: center;
+  left: 25px;
+  bottom: 20px;
 }
 
 .prototype {
-  width: 258px;
-  height: 55px;
-  background: var(--main-color);
-  color: var(--w-color);
-  text-align: center;
-  font-weight: 400;
-  line-height: 55px;
-  border-radius: 0 0 0 20px;
-  font-size: 25px;
-}
-
-.Landing {
-  width: 258px;
-  height: 55px;
+  width: 130px;
+  height: 30px;
   background: var(--w-color);
+  border-radius: 130px;
   color: #008CFF;
   text-align: center;
-  font-weight: 400;
-  line-height: 55px;
-   border-radius: 0 0 20px 0;
-     font-size: 25px;
+  line-height: 30px;
+  font-weight: 500;
+}
+
+.project .Landing {
+  width: 130px;
+  height: 30px;
+  background: var(--w-color);
+  border-radius: 130px;
+  color: #008CFF;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.project_list li {
+
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px;
+  color: #fff;
 }
 
 .scroll_hint {
